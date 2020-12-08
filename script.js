@@ -7,11 +7,44 @@ const bodyParts = [
   new Line({x1: 210, x2: 180, y1: 180, y2: 230, name: 'left leg'})
 ];
 
+const modalActions = {
+  TRY_AGAIN: 'TRY_AGAIN'
+};
+
+const winningModalTemplate = `
+  <h1 class="modal-title">YOU WON!</h1>
+  <button class="modal-action" data-action="TRY_AGAIN">NEW GAME</button>
+`;
+
+const losiningModalTemplate = `
+  <h1 class="modal-title">YOU LOSE!</h1>
+  <button class="modal-action" data-action="TRY_AGAIN">TRY AGAIN</button>
+`;
+
+const modalEl = document.createElement('div');
+modalEl.classList.add('modal-container');
+modalEl.innerHTML = winningModalTemplate;
+const modal = new Modal(modalEl, document.body);
+
 const svg = document.querySelector('#svg');
 
 let wordToGuess;
-const correctLetters = [];
-const wrongLetters = [];
+let correctLetters = [];
+let wrongLetters = [];
+
+const checkWin = () => {
+  let temp = true;
+  const correctLettersMap = {};
+  for (let letter of correctLetters) {
+    correctLettersMap[letter] = letter;
+  }
+  for (let letter of wordToGuess) {
+    if(!correctLettersMap[letter]) {
+      temp = false;
+    }
+  }
+  return temp;
+};
 
 const drawWord = (word) => {
   const wordGuess = document.querySelector('#word-guess');
@@ -29,11 +62,16 @@ const drawWord = (word) => {
   .join('');
   wordGuess.innerHTML = wordGueesHTML;
   wordToGuess = word;
+  if (checkWin()) {
+    modalEl.innerHTML = winningModalTemplate;
+    modal.open();
+  }
 };
 
 const getWord = async () => {
   const res = await fetch('https://random-word-api.herokuapp.com/word?number=1');
   const word = await res.json();
+  console.log(word);
   drawWord(word[0]);
 };
 
@@ -43,13 +81,15 @@ const isCorrect = (letter) => {
 
 const drawBodyPart = () => {
   const index = wrongLetters.length - 1;
-  if (index >= bodyParts.length) {
-
-  } else {
+  if (index < bodyParts.length) {
     const bodyPart = bodyParts[index];
     svg.append(bodyPart.getElement());
     bodyPart.draw();
   }
+  if (index >= bodyParts.length - 1) {
+    modalEl.innerHTML = losiningModalTemplate;
+    modal.open();
+  } 
 };
 
 const addWrongLetter = (letter) => {
@@ -78,11 +118,34 @@ const addLetter = (letter) => {
   }
 };
 
+const removeBodyParts = () => {
+  bodyParts.forEach((bodyPart) => {
+    bodyPart.remove();
+  });
+};
+
+const tryAgain = () => {
+  correctLetters = [];
+  wrongLetters = [];
+  getWord();
+  removeBodyParts();
+};
+
 getWord();
 
 window.addEventListener('keydown', (event) => {
   if (event.keyCode >= 65 && event.keyCode <= 90) {
     const letter = event.key;
     addLetter(letter);
+  }
+});
+
+modalEl.addEventListener('click', (event) => {
+  const data = event.target.dataset;
+  switch(data.action){
+    case(modalActions.TRY_AGAIN):
+      modal.close();
+      tryAgain();
+      break;
   }
 });

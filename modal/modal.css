@@ -1,0 +1,28 @@
+.backdrop {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+  z-index: 100;
+  display: none;
+  cursor: pointer;
+}
+
+.backdrop.open {
+  display: block;
+}
+
+.modal.open {
+  display: block;
+}
+
+.modal {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  margin: auto;
+  width: 400px;
+  min-height: 100px;
+}

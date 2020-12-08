@@ -12,6 +12,7 @@ class Shape {
     cancelAnimationFrame(this.requestId);
     this.currentStep = 0;
   }
+  remove() {}
 }
 
 class Circle extends Shape {
@@ -46,6 +47,14 @@ class Circle extends Shape {
     } else {
       this.stopDrawing();
     }
+  }
+  remove() {
+    this.circle.remove();
+    this.circle.setAttribute('cx', this.cx);
+    this.circle.setAttribute('cy', this.cy);
+    this.circle.setAttribute('r', this.radius);
+    this.circle.setAttribute('stroke-dasharray', this.perimeter);
+    this.circle.setAttribute('stroke-dashoffset', this.perimeter);
   }
 }
 
@@ -82,5 +91,12 @@ class Line extends Shape {
     } else {
       this.stopDrawing();
     }
+  }
+  remove() {
+    this.line.remove();
+    this.line.setAttribute('y1', this.y1);
+    this.line.setAttribute('x1', this.x1);
+    this.line.setAttribute('x2', this.x1);
+    this.line.setAttribute('y2', this.y1);
   }
 }

@@ -62,3 +62,50 @@ body {
   border-bottom-color: white;
   color: white;
 }
+
+.modal-container {
+  width: 100%;
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 40px;
+  background: rgb(255, 255, 255);
+  border-radius: 15px;
+  animation-name: modal-open;
+  animation-duration: 1s;
+}
+
+.modal-action {
+  border: 1px solid rgb(0, 77, 128);
+  border-radius: 5px;
+  padding: 10px;
+  color: rgb(0, 77, 128);
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.modal-action:hover {
+  background: rgb(0, 77, 128);
+  color: white;
+}
+
+.modal-title {
+  font-size: 32px;
+  margin:0 auto 10px;
+}
+
+@keyframes modal-open {
+  0% {
+    opacity: 0;
+    transform: translateY(-100vh);
+  }
+  60% {
+    transform: translateY(40%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
