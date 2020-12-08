@@ -32,6 +32,14 @@ let wordToGuess;
 let correctLetters = [];
 let wrongLetters = [];
 
+const showPopup = (ms) => {
+  const popup = document.querySelector('#popup');
+  popup.classList.add('active');
+  setTimeout(() =>{
+    popup.classList.remove('active');
+  }, ms);
+};
+
 const checkWin = () => {
   let temp = true;
   const correctLettersMap = {};
@@ -92,18 +100,25 @@ const drawBodyPart = () => {
   } 
 };
 
+const showWrongLetter = () => {
+  const wrongLettersEl = document.querySelector('#wrong-letters');
+  wrongLettersEl.innerHTML = '<p>Wrong Letters: </p>';
+  wrongLettersEl.innerHTML += wrongLetters.join(', ');
+}
+
 const addWrongLetter = (letter) => {
   if (wrongLetters.includes(letter)) {
-
+    showPopup(1500);
   } else {
     wrongLetters.push(letter);
+    showWrongLetter();
     drawBodyPart();
   }
 };
 
 const addCorrectLetter = (letter) => {
   if (correctLetters.includes(letter)) {
-
+    showPopup(1500);
   } else {
     correctLetters.push(letter);
     drawWord(wordToGuess);
@@ -127,6 +142,8 @@ const removeBodyParts = () => {
 const tryAgain = () => {
   correctLetters = [];
   wrongLetters = [];
+  const wrongLettersEl = document.querySelector('#wrong-letters');
+  wrongLettersEl.innerHTML = '';
   getWord();
   removeBodyParts();
 };
