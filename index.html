@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="main-title">Hangman Game</h1>
+  <div class="game-container">
+    <svg id="svg" height="300" width="260">
+      <line class="svg-line" x1="0" x2="10" y1="290" y2="270"></line>
+      <line class="svg-line" x1="10" x2="20" y1="290" y2="270"></line>
+      <line class="svg-line" x1="20" x2="30" y1="290" y2="270"></line>
+      <line class="svg-line" x1="30" x2="40" y1="290" y2="270"></line>
+      <line class="svg-line" x1="40" x2="50" y1="290" y2="270"></line>
+      <line class="svg-line" x1="50" x2="60" y1="290" y2="270"></line>
+      <line class="svg-line" x1="60" x2="70" y1="290" y2="270"></line>
+      <line class="svg-line" x1="70" x2="80" y1="290" y2="270"></line>
+      <line class="svg-line" x1="80" x2="90" y1="290" y2="270"></line>
+      <line class="svg-line" x1="90" x2="100" y1="290" y2="270"></line>
+      <line class="svg-line" x1="100" x2="110" y1="290" y2="270"></line>
+      <line class="svg-line" x1="110" x2="120" y1="290" y2="270"></line>
+      <line class="svg-line" x1="120" x2="130" y1="290" y2="270"></line>
+
+      <line class="svg-line" x1="10" x2="130" y1="270" y2="270"></line>
+
+      <line class="svg-line" x1="30" x2="70" y1="270" y2="200"></line>
+      <line class="svg-line" x1="110" x2="70" y1="270" y2="200"></line>
+
+      <line class="svg-line" x1="70" x2="70" y1="200" y2="10"></line>
+
+      <line class="svg-line" x1="70" x2="210" y1="10" y2="10"></line>
+
+      <line class="svg-line" x1="210" x2="210" y1="10" y2="40"></line>
+
+      <!-- Body -->
+      <!-- <circle  class="svg-line" cx="210" cy="70" r="30"></circle> -->
+
+      <!-- <line class="svg-line" x1="210" x2="210" y1="100" y2="180"></line>
+
+      <line class="svg-line" x1="210" x2="250" y1="110" y2="150"></line>
+      <line class="svg-line" x1="210" x2="170" y1="110" y2="150"></line>
+
+      <line class="svg-line" x1="210" x2="240" y1="180" y2="230"></line>
+      <line class="svg-line" x1="210" x2="180" y1="180" y2="230"></line> -->
+    </svg>
+
+  </div>
+  <div id="word-guess" class="word-guess">
+    <!-- <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span>
+    <span class="letter-guess"></span> -->
+  </div>
+  <div class="wrong-letters">
+    <!-- <p>Wrong Letters: </p>
+    q, w, r, e -->
+  </div>
+  <script src="shapes.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- <circle class="svg-line" cx="210" cy="70" r="30"></circle>
+
+      <line class="svg-line" x1="210" x2="210" y1="100" y2="180"></line>
+
+      <line class="svg-line" x1="210" x2="250" y1="130" y2="90"></line>
+      <line class="svg-line" x1="210" x2="170" y1="130" y2="90"></line>
+
+      <line class="svg-line" x1="210" x2="250" y1="180" y2="220"></line>
+      <line class="svg-line" x1="210" x2="170" y1="180" y2="220"></line> -->
